@@ -39,32 +39,4 @@ public class DBConnect
 	{
 		this.privilages = privilages;
 	}
-	
-	public void connectToAndQueryDatabase(String username, String password,String userN, String userP) throws SQLException {
-		//System.out.println("User name from login : " + userN + " Password from logim : " + userP );
-	   
-
-	    Statement stmt = con.createStatement();
-	    ResultSet rs = stmt.executeQuery("SELECT UserID, UserName, Password, Email FROM Users");
-	    boolean loop = true;
-	    while (rs.next()&&loop) {
-	        int id = rs.getInt("UserID");
-	        String Un = rs.getString("UserName");
-	        String Ps = rs.getString("Password");
-	        String Em = rs.getString("Email");
-	        //System.out.println(id+","+Un + ","+Ps+","+Em);
-	        if(Un.equalsIgnoreCase(userN)&&Ps.equalsIgnoreCase(userP))
-	        {
-	        	setPrivilages("Access");
-	        	loop = false;
-	        }
-	        else
-	        {
-	        	setPrivilages("No Access");
-	        }
-	    }
-	}
-	
-
-
 }
